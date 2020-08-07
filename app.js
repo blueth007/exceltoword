@@ -14,8 +14,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use("/downloadTpl",downloadTplRouter)
 
-app.listen(9090);
-console.log("Server running....")
-
+module.exports = app;
 
 
