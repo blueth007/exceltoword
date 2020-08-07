@@ -154,7 +154,6 @@
             var laytpl = layui.laytpl,
                 $ = layui.$,
                 table = layui.table;
-
             const Month = [
                 "January",
                 "February",
@@ -170,10 +169,8 @@
                 "December",
             ];
             var data = [];
-
             //table_init(data);
             //excelhtml(data)    
-
             function excelhtml(data) {
                 var tohtml = {
                     month: Month,
@@ -235,7 +232,6 @@
                     //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
                     //wb.Sheets[Sheet名]获取第一个Sheet的数据
                     //此为json对象
-
                     var excel_json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]),
                         excel_csv = XLSX.utils.sheet_to_csv(wb.Sheets[wb.SheetNames[0]]),
                         exccel_csv_json = csvJson(excel_csv, excel_json);
@@ -288,7 +284,6 @@
                     }
                     return tmp;
                 })
-
             }
 			//根据短时间的数字转换为excel的短时间
 		function formatDate(timeValue) {
@@ -299,8 +294,6 @@
 			let date = time.getDate() + ''
 			return year + "-" + month + "-" + date
 		}
-
-
             function saveWord(textToJson,n) {
                 $(".word_content")
                     .eq(n)
