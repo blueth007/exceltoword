@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/FileSaver.js/2014-08-29/FileSaver.js"
+        type="application/javascript"></script>
+    <link rel="stylesheet" href="./js/css/layui.css">
+    <title>exceltoword</title>
+    <style>
+        tr,
+        td {
+            border: 1px solid;
+            padding: 0 5px;
+        }
+		.file {
+			position: relative;
+			display: inline-block;
+			background: #009688;
+			border: 1px solid #99D3F5;
+			border-radius: 4px;
+			padding: 4px 12px;
+			overflow: hidden;
+			color: #fff;
+			text-decoration: none;
+			text-indent: 0;
+			line-height: 20px;
+			vertical-align:middle;
+		}
+		.file input {
+			position: absolute;
+			font-size: 100px;
+			right: 0;
+			top: 0;
+			opacity: 0;
+		}
+		.file:hover {
+			background: #AADFFD;
+			border-color: #78C3F3;
+			color: #004974;
+			text-decoration: none;
+		}
+		body{
+			padding:10px 50px;
+		}
+    </style>
+</head>
+
+<body>
+<p>
+ 
+<a href="javascript:;" class="file">选择文件
+    <input type="file" name="" id="test5" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+ 
+</a>
+	<span> <a  class="layui-btn layui-btn-sm " href='/downloadTpl'>下载excel模板</a> </span>
+</p>
+    <table id="demo" lay-filter="test"></table>
+    <script id="show" type="text/html">
+        <ol>
+
+            {{#  layui.each(d.data,function(index,val){
+
+                var Btime=val.Birthday.match(/[0-9]+/g),
+                    TTime=val.Term.match(/[0-9]+/g); 
+             }}
+
+            <li>
+                <div class="word_content">
+                    <p>
+                        <span style="font-size:18.6px;font-family:黑体">&nbsp;</span>
+                    </p>
+                    <p style="text-align:center">
+                        <span style="font-size:18.6px;font-family:黑体">&nbsp;</span>
+                    </p>
+                    <p style="text-align:center">
+                        <strong><span style="font-size:18.6px;font-family:黑体">
+                                Certificate of Study Status
+                            </span></strong>
+                    </p>
+                    <p style="text-align:center">
+                        <strong><span style="font-size:18.6px;font-family:黑体">在读证明</span></strong>
+                    </p>
+                    <p style="text-align:center">
+                        <strong><span style="font-size:18.6px;font-family:黑体">&nbsp;</span></strong>
+                    </p>
+                    <p style="text-align:center">
+                        <strong><span style="font-size:18.6px;font-family:黑体">&nbsp;</span></strong>
+                    </p>
+                    <p style="text-align: justify;">
+                        <strong>
+                            <span style="font-size:18.6px;font-family:黑体;">This is to certify that {{val.EnglishName}},
+                                born on {{ d.month[Btime[1]-1] }} {{Btime[2]}}, {{Btime[0]}},
+                                {{val.Sex=="F"?"Female":"Male"}}, studied in our school from
+                                {{d.month[TTime[1]-1]}} of year {{TTime[0]}} to now. {{ val.Sex=='F'?"She":"He" }}
+                                is studying in Grade 12 in the International Department of Shanghai Gold Apple
+                                School.</span></strong>
+                    </p>
+                    <p>
+                        <strong><span style="font-size:18.6px;font-family:黑体">ID NO.:{{val.PassportID}}</span></strong>
+                    </p>
+                    <p>
+                        <span style="font-size:18.6px;font-family:宋体">&nbsp;</span>
+                    </p>
+                    <p>
+                        <span style="font-size:18.6px;font-family:宋体">
+                            兹证明{{val.ChineseName}}同学，出生于{{Btime[0]}}年{{Btime[1]}}月{{Btime[2]}}日，性别：{{val.Sex=="F"?"女":"男"}}，于{{TTime[0]}}年{{TTime[1]}}月入学，现在在我校就读国际部高三年级。
+                        </span>
+                    </p>
+                    <p>
+                        <span style="font-size:18.6px;font-family:宋体">身份证号码:{{val.PassportID}}</span>
+                    </p>
+                    <p>
+                        <span style="font-size:18.6px;font-family:宋体">&nbsp;</span>
+                    </p>
+                    <p style="text-align:right">
+                        <span style="font-size:18.6px;font-family:宋体">&nbsp;</span>
+                    </p>
+                    <p style="text-align:right">
+                        <span style="font-size:14px;font-family:宋体">
+						上海市民办金苹果学校国际部
+                        </span>
+                    </p>
+                    <p style="text-align:right">
+                        <span style="font-size:14px;font-family:宋体">
+                            Shanghai Gold Apple School International Department</span>
+                    </p>
+                    <p style="text-align:right">
+                        <span style="font-size:14px;font-family:宋体">{{ new Date().getFullYear()}}</span><span
+                            style="font-size: 16px;font-family:宋体">年{{ new Date().getMonth()+1}}月{{ new Date().getDate()}}日</span>
+                    </p>
+                    <p style="text-align:right">
+                        <span style="font-size:16px;font-family:Times New Roman">{{d.month[new Date().getMonth()]}} {{ new Date().getDate()}}, {{ new Date().getFullYear()}}</span>
+                    </p>
+                    <p>
+                        <br />
+                    </p>
+                </div>
+                {{index+1}}--{{val.ChineseName}}在读证明下载 &nbsp;&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-sm download" >Save Word</button>
+            </li>
+            {{#  }); }}
+        </ol>
+    </script>
+   
+    <div id="view"></div>
+
+    <script src="https://s1.pstatp.com/cdn/expire-1-M/xlsx/0.14.2/xlsx.full.min.js"></script>
+    <script src="./js/layui.js"></script>
+    <script src="./js/jquery.wordexport.js"></script>
+    <script>
+        layui.use(['laytpl', "table"], function () {
+            var laytpl = layui.laytpl,
+                $ = layui.$,
+                table = layui.table;
+
+            const Month = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ];
+            var data = [];
+
+            //table_init(data);
+            //excelhtml(data)    
+
+            function excelhtml(data) {
+                var tohtml = {
+                    month: Month,
+                    data: data,
+                }
+                var getTpl = show.innerHTML,
+                    view = document.getElementById('view');
+                laytpl(getTpl).render(tohtml, function (html) {
+                    view.innerHTML = html;
+                });
+            }
+
+            function table_init(data) {
+                console.log(data);
+                var arr = [],
+                    Arr = [];
+                Arr = Object.keys(data[0]).map(function (val) {
+                    return {
+                        field: val,
+                        title: val,
+                    }
+                });
+                arr.push(Arr);
+                //第一个实例
+                table.render({
+                    elem: '#demo',
+                    height: 312,
+                    data: data,
+                    cols: arr,
+                    limit: data.length
+                });
+            }
+            var wb; //读取完成的数据
+            var rABS = false; //是否将文件读取为二进制字符串
+
+            $("#test5").on("change", function (e) {
+                importf(e.target)
+            })
+
+            function importf(obj) {
+                //导入
+                if (!obj.files) {
+                    return;
+                }
+                var f = obj.files[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    if (rABS) {
+                        wb = XLSX.read(btoa(fixdata(data)), {
+                            //手动转化
+                            type: "base64",
+                        });
+                    } else {
+                        wb = XLSX.read(data, {
+                            type: "binary",
+                        });
+                    }
+                    //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
+                    //wb.Sheets[Sheet名]获取第一个Sheet的数据
+                    //此为json对象
+
+                    var excel_json = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]),
+                        excel_csv = XLSX.utils.sheet_to_csv(wb.Sheets[wb.SheetNames[0]]),
+                        exccel_csv_json = csvJson(excel_csv, excel_json);
+                    // console.log(exccel_csv_json);
+                    data= exccel_csv_json;
+					$("#view").on("click","li .download",function(){
+						var n=$(this).parents("li").index()
+					   console.log(data,n);
+                   
+					   saveWord(data,n);
+					})
+					
+                    table_init(exccel_csv_json);
+                    excelhtml(exccel_csv_json);
+                };
+
+                if (rABS) {
+                    reader.readAsArrayBuffer(f);
+                } else {
+                    reader.readAsBinaryString(f);
+                }
+            }
+
+            function fixdata() {
+                //文件流转BinaryString
+                var o = "",
+                    l = 0,
+                    w = 10240;
+                for (; l < data.byteLength / w; ++l)
+                    o += String.fromCharCode.apply(
+                        null,
+                        new Uint8Array(data.slice(l * w, l * w + w))
+                    );
+                o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+                return o;
+            }
+            //根据第一行的表头 遍历对象查看不存在的属性设置为空
+            function csvJson(csv, json) {
+                var arr = csv.split('\n'); // 很具换行取数组
+                arr.pop(); //去掉最后一空行
+                var title = arr[0].split(","); //取key
+                return json.map(function (val, index) {
+                    var tmp = {};
+                    for (var k = 0; k < title.length; k++) {
+                        var ky = title[k];
+                        tmp[ky] = val[ky] ? val[ky] : "";
+						if(ky=='Birthday' || ky=='Term'){
+						  tmp[ky] = val[ky] ? formatDate(val[ky]) : "";
+						}
+                    }
+                    return tmp;
+                })
+
+            }
+			//根据短时间的数字转换为excel的短时间
+		function formatDate(timeValue) {
+			let time = new Date((timeValue- 1) * 24 * 3600000 + 1)
+			time.setYear(time.getFullYear() - 70)
+			let year = time.getFullYear() + ''
+			let month = time.getMonth() + 1 + ''
+			let date = time.getDate() + ''
+			return year + "-" + month + "-" + date
+		}
+
+
+            function saveWord(textToJson,n) {
+                $(".word_content")
+                    .eq(n)
+                    .wordExport(n + 1 + " " + textToJson[n].ChineseName + "通知书");
+            }
+
+        });
+    </script>
+</body>
+
+</html>
