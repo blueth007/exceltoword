@@ -1,5 +1,6 @@
 <?php  
 //$file_name = "down";
+
 $file_name = "template.xlsx";     //下载文件名    
 $file_dir = "./download/";        //下载文件存放目录    
 //检查文件是否存在    
